@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:background="@color/whiteBackground"
+    tools:context=".MainActivity">
+
+
+    <TableRow
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp">
+
+        <Button
+            android:layout_marginStart="10dp"
+            android:id="@+id/b1"
+            android:background="@color/white"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            style="?android:attr/buttonBarButtonStyle" />
+
+        <Button
+            android:id="@+id/b2"
+            android:background="@color/white"
+            android:layout_marginStart="10dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            style="?android:attr/buttonBarButtonStyle" />
+
+        <Button
+            android:id="@+id/b3"
+            android:background="@color/white"
+            android:layout_marginStart="10dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            style="?android:attr/buttonBarButtonStyle" />
+    </TableRow>
+    <TableRow
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp">
+
+        <Button
+            android:layout_marginStart="10dp"
+            android:id="@+id/b4"
+            android:background="@color/white"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            style="?android:attr/buttonBarButtonStyle" />
+
+        <Button
+            android:id="@+id/b5"
+            android:background="@color/white"
+            android:layout_marginStart="10dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            style="?android:attr/buttonBarButtonStyle" />
+
+        <Button
+            android:id="@+id/b6"
+            android:background="@color/white"
+            android:layout_marginStart="10dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            style="?android:attr/buttonBarButtonStyle" />
+    </TableRow>
+    <TableRow
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp">
+
+        <Button
+            android:layout_marginStart="10dp"
+            android:id="@+id/b7"
+            android:background="@color/white"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            style="?android:attr/buttonBarButtonStyle" />
+
+        <Button
+            android:id="@+id/b8"
+            android:background="@color/white"
+            android:layout_marginStart="10dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            style="?android:attr/buttonBarButtonStyle" />
+
+        <Button
+            android:id="@+id/b9"
+            android:background="@color/white"
+            android:layout_marginStart="10dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            style="?android:attr/buttonBarButtonStyle" />
+    </TableRow>
+
+</TableLayout>

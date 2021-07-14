@@ -33,6 +33,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun onClickButton(view: View) {
+
         var cellId = 0
         when(view.id) {
             R.id.b1 -> cellId = 1
@@ -48,6 +49,10 @@ class MainActivity : AppCompatActivity() {
 //        Toast.makeText(this,"CellId: $cellId", Toast.LENGTH_SHORT).show()
         val autoPlay:Int = if(binding.autoplaySwitch.isChecked) 1 else 0
         playGame(cellId, view as Button, autoPlay)
+        if(player1.size + player2.size == 9){
+            Toast.makeText(this, "Game Over! No one Wins", Toast.LENGTH_SHORT).show()
+            restartGame()
+        }
 
 
     }
@@ -61,21 +66,25 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun playGame(cellId: Int, button: Button, autoPlay: Int) {
+
         if(activePlayer == 1) {
             button.text = "X"
             button.setBackgroundResource(R.color.blue)
             player1.add(cellId)
+            button.isEnabled = false
             activePlayer = 2
-            if(autoPlay == 1)
+            if(autoPlay == 1 && (checkWinner() == -1))
                 autoplay()
+
         }else {
             button.text = "O"
             button.setBackgroundResource(R.color.darkGreen)
             player2.add(cellId)
+            button.isEnabled = false
             activePlayer = 1
         }
-        button.isEnabled = false
         checkWinner()
+
     }
 
     private fun autoplay() {
@@ -104,13 +113,14 @@ class MainActivity : AppCompatActivity() {
             playGame(cellId, buttonSelected, 1)
         }
         else{
-            Toast.makeText(this, "Game Over!!", Toast.LENGTH_SHORT).show()
+            checkWinner()
+            Toast.makeText(this, "Game Over!! No one wins", Toast.LENGTH_SHORT).show()
             restartGame()
         }
 
     }
 
-    private fun checkWinner() {
+    private fun checkWinner():Int {
         var winner = -1
 
         // row 1
@@ -179,6 +189,7 @@ class MainActivity : AppCompatActivity() {
             player2WinCount += 1
             restartGame()
         }
+        return winner
     }
 
     private fun restartGame() {

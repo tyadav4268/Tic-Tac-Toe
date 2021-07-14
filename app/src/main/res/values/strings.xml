@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">TicTacToe</string>
+    <string name="autoplay">AutoPLay</string>
+    <string name="score">Player1: %1$d Player2: %2$d</string>
 </resources>

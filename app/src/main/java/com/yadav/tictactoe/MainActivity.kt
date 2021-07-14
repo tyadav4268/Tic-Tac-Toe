@@ -6,7 +6,6 @@ import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import com.yadav.tictactoe.databinding.ActivityMainBinding
-import java.lang.Math.random
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -47,31 +46,35 @@ class MainActivity : AppCompatActivity() {
             R.id.b9 -> cellId = 9
         }
 //        Toast.makeText(this,"CellId: $cellId", Toast.LENGTH_SHORT).show()
-        playGame(cellId, view as Button)
+        val autoPlay:Int = if(binding.autoplaySwitch.isChecked) 1 else 0
+        playGame(cellId, view as Button, autoPlay)
 
 
     }
-    var activePlayer = 1
+    private var activePlayer = 1
 
-    var player1 = ArrayList<Int>()
-    var player2 = ArrayList<Int>()
+    private var player1 = ArrayList<Int>()
+    private var player2 = ArrayList<Int>()
 
-    private fun playGame(cellId: Int, button: Button) {
+    private var player1WinCount = 0
+    private var player2WinCount = 0
+
+
+    private fun playGame(cellId: Int, button: Button, autoPlay: Int) {
         if(activePlayer == 1) {
             button.text = "X"
             button.setBackgroundResource(R.color.blue)
             player1.add(cellId)
             activePlayer = 2
-            autoplay()
+            if(autoPlay == 1)
+                autoplay()
         }else {
             button.text = "O"
             button.setBackgroundResource(R.color.darkGreen)
             player2.add(cellId)
             activePlayer = 1
         }
-
         button.isEnabled = false
-        
         checkWinner()
     }
 
@@ -98,12 +101,12 @@ class MainActivity : AppCompatActivity() {
                 9 -> binding.b9
                 else -> binding.b1
             }
-            playGame(cellId, buttonSelected)
+            playGame(cellId, buttonSelected, 1)
         }
         else{
             Toast.makeText(this, "Game Over!!", Toast.LENGTH_SHORT).show()
+            restartGame()
         }
-
 
     }
 
@@ -168,11 +171,39 @@ class MainActivity : AppCompatActivity() {
         }
         if(winner == 1){
             Toast.makeText(this, "Player 1 Wins!", Toast.LENGTH_SHORT).show()
+            player1WinCount += 1
+            restartGame()
         }
         else if(winner == 2){
             Toast.makeText(this, "Player 2 Wins!", Toast.LENGTH_SHORT).show()
+            player2WinCount += 1
+            restartGame()
         }
     }
 
+    private fun restartGame() {
+//        Toast.makeText(this, "Player1: $player1WinCount, Player2: $player2WinCount", Toast.LENGTH_SHORT).show()
+        binding.scoreBoard.text = getString(R.string.score, player1WinCount, player2WinCount)
+        activePlayer = 1
+        player1.clear()
+        player2.clear()
+        for(cellId in 1..9){
+            val buttonSelected: Button = when(cellId) {
+                1 -> binding.b1
+                2 -> binding.b2
+                3 -> binding.b3
+                4 -> binding.b4
+                5 -> binding.b5
+                6 -> binding.b6
+                7 -> binding.b7
+                8 -> binding.b8
+                9 -> binding.b9
+                else -> binding.b1
+            }
+            buttonSelected.text = ""
+            buttonSelected.setBackgroundResource(R.color.white)
+            buttonSelected.isEnabled = true
+        }
+    }
 
 }
